@@ -14,7 +14,7 @@ Includes functions for initialization, touch point reading, interrupt handling, 
 
 1. Clone or download this repository:
    ```bash
-   git clone https://github.com/milad-nikpendar/GT911-touch-library.git
+   git clone https://github.com/milad-nikpendar/initGT911.git
    ```
 2. Copy the folder to your Arduino `libraries` directory.
 3. Restart the Arduino IDE.
