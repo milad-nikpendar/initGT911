@@ -91,13 +91,6 @@ void loop() {
 
 ---
 
-## 🧪 Examples
-
-- Example sketches are located in the **examples/** directory.
-- Includes both polling and interrupt-driven touch detection.
-
----
-
 ## 📜 License
 
 This project is licensed under the **MIT License** – see [LICENSE](LICENSE) for details.
