@@ -1,8 +1,8 @@
 # initGT911 v1.0.0 Touch Library
 
-[![Arduino Library Manager](https://img.shields.io/badge/Arduino-Library_Manager-00979D.svg?logo=arduino&logoColor=white)](https://docs.arduino.cc/libraries/initmemory/)
+[![Arduino Library Manager](https://img.shields.io/badge/Arduino-Library_Manager-00979D.svg?logo=arduino&logoColor=white)](https://docs.arduino.cc/libraries/initGT911/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub release](https://img.shields.io/github/v/release/milad-nikpendar/initMemory)](https://github.com/milad-nikpendar/initMemory/releases)
+[![GitHub release](https://img.shields.io/github/v/release/milad-nikpendar/initMemory)](https://github.com/milad-nikpendar/initGT911/releases)
 [![Author](https://img.shields.io/badge/Author-milad--nikpendar-blueviolet)](https://github.com/milad-nikpendar)
 
 A complete Arduino-compatible driver for the **Goodix GT911 capacitive touch controller**, supporting **Arduino**, **ESP8266**, and **ESP32** boards.  
