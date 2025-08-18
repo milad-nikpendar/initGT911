@@ -1,0 +1,44 @@
+#######################################
+# Syntax Coloring Map for GT911 Library
+#######################################
+
+#######################################
+# Class
+#######################################
+initGT911   KEYWORD1
+
+#######################################
+# Methods and Functions
+#######################################
+begin   KEYWORD2
+touched KEYWORD2
+getPoint    KEYWORD2
+getPoints   KEYWORD2
+readConfig  KEYWORD2
+updateConfig    KEYWORD2
+setupDisplay    KEYWORD2
+reset   KEYWORD2
+i2cStart    KEYWORD2
+write   KEYWORD2
+read    KEYWORD2
+writeBytes  KEYWORD2
+readBytes   KEYWORD2
+calcChecksum    KEYWORD2
+readChecksum    KEYWORD2
+readTouches KEYWORD2
+readTouchPoints KEYWORD2
+productID   KEYWORD2
+readInfo    KEYWORD2
+
+#######################################
+# Constants and Enumerations
+#######################################
+GT911_I2C_ADDR_5D   LITERAL1
+GT911_I2C_ADDR_28   LITERAL1
+GT911_MODE_INTERRUPT    LITERAL1
+GT911_MODE_POLLING  LITERAL1
+Rotate::_0  LITERAL1
+Rotate::_90 LITERAL1
+Rotate::_180    LITERAL1
+Rotate::_270    LITERAL1
+GT911_MAX_CONTACTS  LITERAL1
