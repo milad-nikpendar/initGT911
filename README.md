@@ -107,5 +107,5 @@ This project is licensed under the **MIT License** – see [LICENSE](LICENSE) fo
 ## ✍️ Author
 
 **Milad Nikpendar**  
-GitHub: [milad-nikpendar/initGT911](https://github.com/milad-nikpendar/initGT911)
-Email: milad82nikpendar@gmail.com
+GitHub: [milad-nikpendar/initGT911](https://github.com/milad-nikpendar/initGT911)  
+Email: milad82nikpendar@gmail.com  
