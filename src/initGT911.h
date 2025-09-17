@@ -10,7 +10,7 @@
 #include <Wire.h>
 #include "initGT911_Structs.h"
 
-//#define GT911_Debug_Serial
+// #define GT911_Debug_Serial
 
 #ifdef GT911_Debug_Serial
 #define GT911_Log(a) Serial.println("[GT911] " + String(a))
@@ -39,17 +39,17 @@ enum : uint8_t
   GT911_MODE_POLLING
 };
 
+typedef enum : uint8_t
+{
+  initGT911_ROTATION_0 = 0,
+  initGT911_ROTATION_90,
+  initGT911_ROTATION_180,
+  initGT911_ROTATION_270
+} rotation_t;
+
 class initGT911
 {
 public:
-  enum class Rotate
-  {
-    _0,
-    _90,
-    _180,
-    _270,
-  };
-
 private:
   TwoWire *_wire;
   int8_t _intPin;
@@ -60,8 +60,6 @@ private:
   GTConfig _config;
   GTInfo _info;
   GTPoint _points[GT911_MAX_CONTACTS];
-
-  Rotate _rotation = Rotate::_0;
 
   void reset();
   void i2cStart(uint16_t reg);
@@ -86,7 +84,7 @@ public:
   GTPoint getPoint(uint8_t num);
   GTPoint *getPoints();
 
-  void setupDisplay(uint16_t xRes, uint16_t yRes, Rotate rotation);
+  void setupDisplay(uint16_t xRes, uint16_t yRes, rotation_t rotation);
 };
 
 #endif // INIT_GT911_H
