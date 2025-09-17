@@ -29,7 +29,7 @@ void setup() {
   // Init GT911 (interrupts are handled INSIDE the library)
   if (Touchscreen.begin(INT_PIN, RST_PIN, I2C_FREQ)) {
     Serial.println("GT911 initialized (interrupt mode).");
-    Touchscreen.setupDisplay(TFT_HOR_RES, TFT_VER_RES, initGT911::Rotate::_0);
+    Touchscreen.setupDisplay(TFT_HOR_RES, TFT_VER_RES, initGT911_ROTATION_0);
   } else {
     Serial.println("GT911 not found.");
   }
