@@ -200,19 +200,19 @@ int8_t initGT911::readTouches()
 bool initGT911::readTouchPoints()
 {
   bool result = readBytes(GT911_REG_COORD_ADDR + 1, (uint8_t *)_points, sizeof(GTPoint) * GT911_MAX_CONTACTS);
-
-  if (result && _rotation != Rotate::_0)
-  {
-    for (uint8_t i = 0; i < GT911_MAX_CONTACTS; i++)
+  /*
+    if (result)
     {
-      if (_rotation == Rotate::_180)
+      for (uint8_t i = 0; i < GT911_MAX_CONTACTS; i++)
       {
-        _points[i].x = _info.xResolution - _points[i].x;
-        _points[i].y = _info.yResolution - _points[i].y;
+        if (_rotation == Rotate::_180)
+        {
+          _points[i].x = _info.xResolution - _points[i].x;
+          _points[i].y = _info.yResolution - _points[i].y;
+        }
       }
     }
-  }
-
+  */
   return result;
 }
 
@@ -233,7 +233,7 @@ bool initGT911::begin(int8_t intPin, int8_t rstPin, uint32_t clk)
   if (_wire->endTransmission() == 0)
   {
     readInfo(); // Need to get resolution to use rotation
-    
+
     if (intPin > 0)
     {
       pinMode(_intPin, INPUT);
@@ -326,9 +326,8 @@ GTPoint *initGT911::getPoints()
   return _points;
 }
 
-void initGT911::setupDisplay(uint16_t xRes, uint16_t yRes, Rotate rotation)
+void initGT911::setupDisplay(uint16_t xRes, uint16_t yRes, rotation_t rotation)
 {
-  _rotation = rotation;
   GTConfig *cfg = readConfig();
   if (cfg == nullptr)
   {
@@ -342,11 +341,15 @@ void initGT911::setupDisplay(uint16_t xRes, uint16_t yRes, Rotate rotation)
   cfg->xResolution = xRes; // Set X resolution
   cfg->yResolution = yRes; // Set Y resolution
 
-  cfg->moduleSwitch1 &= ~(1 << 7); // Set bit 7 to 0 to invert X-axis
-  cfg->moduleSwitch1 &= ~(1 << 6); // Set bit 6 to 0 to invert Y-axis
-
-  // cfg->moduleSwitch1 |= (1 << 7); // Set bit 7 to 1 to invert X-axis if not in 0 rotation
-  // cfg->moduleSwitch1 |= (1 << 6); // Set bit 6 to 1 to invert Y-axis if not in 0 rotation
-
+  if (rotation == initGT911_ROTATION_0 || rotation == initGT911_ROTATION_180)
+  {
+    cfg->moduleSwitch1 &= ~(1 << 7); // X-axis set 0
+    cfg->moduleSwitch1 &= ~(1 << 6); // Y-axis set 0
+  }
+  else
+  {
+    cfg->moduleSwitch1 |= (1 << 7); // X-axis set 1
+    cfg->moduleSwitch1 |= (1 << 6); // X-axis set 1
+  }
   updateConfig();
 }
