@@ -26,7 +26,7 @@ void setup() {
   // Initialize GT911 in polling mode
   if (Touchscreen.begin(INT_PIN, RST_PIN, I2C_FREQ)) {
     Serial.println("GT911 initialized in polling mode");
-    Touchscreen.setupDisplay(800, 480, initGT911::Rotate::_0); // example resolution
+    Touchscreen.setupDisplay(800, 480, initGT911_ROTATION_0); // example resolution
   } else {
     Serial.println("Failed to initialize GT911");
   }
