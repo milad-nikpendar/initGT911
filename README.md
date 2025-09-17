@@ -1,4 +1,4 @@
-# initGT911 v1.0.0 Touch Library
+# initGT911 Touch Library
 
 [![Arduino Library Manager](https://img.shields.io/badge/Arduino-Library_Manager-00979D.svg?logo=arduino&logoColor=white)](https://docs.arduino.cc/libraries/initGT911/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
