@@ -1,5 +1,5 @@
 /*
-   initGT911 library V1.0.0
+   initGT911 library V1.0.1
    Created by Milad Nikpendar
    Date: 2025-08-18
 */
