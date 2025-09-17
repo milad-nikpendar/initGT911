@@ -18,9 +18,7 @@ void ICACHE_RAM_ATTR _gt911_irq_handler()
 #elif defined(ESP32)
 void IRAM_ATTR _gt911_irq_handler()
 {
-  noInterrupts();
   gt911IRQ = true;
-  interrupts();
 }
 #else
 void _gt911_irq_handler()
@@ -229,19 +227,18 @@ bool initGT911::begin(int8_t intPin, int8_t rstPin, uint32_t clk)
     reset();
     delay(200);
   }
-
-  if (intPin > 0)
-  {
-    pinMode(_intPin, INPUT);
-    attachInterrupt(_intPin, _gt911_irq_handler, FALLING);
-  }
-
   _wire->begin();
   _wire->setClock(clk);
   _wire->beginTransmission(_addr);
   if (_wire->endTransmission() == 0)
   {
     readInfo(); // Need to get resolution to use rotation
+    
+    if (intPin > 0)
+    {
+      pinMode(_intPin, INPUT);
+      attachInterrupt(_intPin, _gt911_irq_handler, FALLING);
+    }
     return true;
   }
   return false;
@@ -297,10 +294,8 @@ uint8_t initGT911::touched(uint8_t mode)
   bool irq = false;
   if (mode == GT911_MODE_INTERRUPT)
   {
-    noInterrupts();
     irq = gt911IRQ;
     gt911IRQ = false;
-    interrupts();
   }
   else if (mode == GT911_MODE_POLLING)
   {
@@ -334,7 +329,6 @@ GTPoint *initGT911::getPoints()
 void initGT911::setupDisplay(uint16_t xRes, uint16_t yRes, Rotate rotation)
 {
   _rotation = rotation;
-
   GTConfig *cfg = readConfig();
   if (cfg == nullptr)
   {
@@ -348,11 +342,11 @@ void initGT911::setupDisplay(uint16_t xRes, uint16_t yRes, Rotate rotation)
   cfg->xResolution = xRes; // Set X resolution
   cfg->yResolution = yRes; // Set Y resolution
 
-  //cfg->moduleSwitch1 &= ~(1 << 7); // Set bit 7 to 0 to invert X-axis
-  //cfg->moduleSwitch1 &= ~(1 << 6); // Set bit 6 to 0 to invert Y-axis
+  cfg->moduleSwitch1 &= ~(1 << 7); // Set bit 7 to 0 to invert X-axis
+  cfg->moduleSwitch1 &= ~(1 << 6); // Set bit 6 to 0 to invert Y-axis
 
-  cfg->moduleSwitch1 |= (1 << 7); // Set bit 7 to 1 to invert X-axis if not in 0 rotation
-  cfg->moduleSwitch1 |= (1 << 6); // Set bit 6 to 1 to invert Y-axis if not in 0 rotation
+  // cfg->moduleSwitch1 |= (1 << 7); // Set bit 7 to 1 to invert X-axis if not in 0 rotation
+  // cfg->moduleSwitch1 |= (1 << 6); // Set bit 6 to 1 to invert Y-axis if not in 0 rotation
 
   updateConfig();
 }
